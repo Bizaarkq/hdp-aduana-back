@@ -20,6 +20,9 @@ class Aduana(models.Model):
         managed = True
         db_table = 'aduana'
 
+    def __str__(self):
+        return self.nombre_aduana
+
 
 class Archivo(models.Model):
     id_archivo = models.IntegerField(primary_key=True)
@@ -36,6 +39,9 @@ class Archivo(models.Model):
     class Meta:
         managed = True
         db_table = 'archivo'
+
+    def __str__(self):
+        return str(self.numero_registro)
 
 
 class AuthGroup(models.Model):
@@ -123,6 +129,8 @@ class Carga(models.Model):
         managed = True
         db_table = 'carga'
 
+    def __str__(self):
+        return str(self.id_carga) + " " + self.descripcion
 
 class Cliente(models.Model):
     id_cliente = models.IntegerField(primary_key=True)
@@ -144,6 +152,9 @@ class Cliente(models.Model):
         managed = True
         db_table = 'cliente'
 
+    def __str__(self):
+        return self.nombre_cliente + " " + self.apellido_cliente + " " + str(self.dui_cliente)
+
 
 class Departamento(models.Model):
     id_departamento = models.CharField(primary_key=True, max_length=5)
@@ -158,6 +169,8 @@ class Departamento(models.Model):
         managed = True
         db_table = 'departamento'
 
+    def __str__(self):
+        return self.nombre_departamento
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
@@ -218,6 +231,8 @@ class Municipio(models.Model):
         managed = True
         db_table = 'municipio'
 
+    def __str__(self):
+        return self.nombre_municipio
 
 class Transporte(models.Model):
     id_transporte = models.IntegerField(primary_key=True)
@@ -241,6 +256,9 @@ class Transporte(models.Model):
     class Meta:
         managed = True
         db_table = 'transporte'
+    
+    def __str__(self):
+        return self.numero_vin + ' ' + self.marca + ' ' + self.modelo + ' ' + self.numero_placas
 
 
 class Transportista(models.Model):
@@ -255,3 +273,6 @@ class Transportista(models.Model):
     class Meta:
         managed = True
         db_table = 'transportista'
+
+    def __str__(self):
+        return str(self.id_transportista)
