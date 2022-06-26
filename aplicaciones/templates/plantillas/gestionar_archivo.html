@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Gestionar archivo</title>
+  </head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand"  disabled><img src="https://icon-library.com/images/form-icon/form-icon-5.jpg" width="35" height="35" class="d-inline-block align-top" alt="">
+      Sistema de Registro Aduanal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="{% url 'Home' %}">Home <span class="sr-only">(current)</span></a>
+
+      </div>
+    </div>
+</nav>
+<br>
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'Home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Gestionar Archivo</li>
+  </ol>
+</nav>
+        <br/>
+        <div class="container-fluid">
+        <div class="row justify-content-md-center">
+    <!--FIN FORM BOOTSTRAP-->
+<!--INICIO TABLA BOOTSTRAP-->
+<div class="col-sm-12 col-md-9">
+    
+    <div class="card " >
+    <div class="card-header bg-info">
+    <h3>Archivos <a href="{% url 'Agregar_archivo' %}" class="btn btn-dark float-right">Agregar</a></h3>
+    </div>
+    <div class="card-body bg">
+    <table class="table table-bordered ">
+    <thead class="thead-dark ">
+    <tr>
+    <th scope="col" class="text-center">N°</th>
+    <th scope="col" class="text-center">Producto</th>
+    <th scope="col" class="text-center">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <th scope="row" class="text-center">1</th>
+        <td class="text-center">Registro A01 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td class="text-center">
+            <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o" style="font-size:30px"></i></a>&nbsp;&nbsp;
+            <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-eye"  style="font-size:30px"></i></a>&nbsp;&nbsp;
+            <a href="{% url 'Modificar_archivo' %}" class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil" style="font-size:30px"></i></a>&nbsp;&nbsp;
+        </td>
+        </tr>
+        <tr>
+        <th scope="row" class="text-center">2</th>
+        <td class="text-center">Registro B02 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td class="text-center">
+            <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o" style="font-size:30px"></i></a>&nbsp;&nbsp;
+            <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye" style="font-size:30px"></i></a>&nbsp;&nbsp;
+            <a href="{% url 'Modificar_archivo' %}" class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil" style="font-size:30px"></i></a>&nbsp;&nbsp;
+        </td>
+        </tr>
+        <tr>
+        <th scope="row" class="text-center">3</th>
+        <td class="text-center">Registro C03 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td class="text-center">
+            <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o" style="font-size:30px"></i></a>&nbsp;&nbsp;
+            <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye" style="font-size:30px"></i></a>&nbsp;&nbsp;
+            <a href="{% url 'Modificar_archivo' %}" class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil" style="font-size:30px"></i></a>&nbsp;&nbsp;
+        </td>
+        </tr>
+        <tr>
+            <th scope="row" class="text-center">4</th>
+            <td class="text-center">Registro D04 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td class="text-center">
+                <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o" style="font-size:30px"></i></a>&nbsp;&nbsp;
+                <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye" style="font-size:30px"></i></a>&nbsp;&nbsp;
+                <a href="{% url 'Modificar_archivo' %}" class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil" style="font-size:30px"></i></a>&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+        <th scope="row" class="text-center"s>5</th>
+        <td class="text-center">Registro E05 &nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td class="text-center">
+            <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o" style="font-size:30px"></i></a>&nbsp;&nbsp;
+            <a class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye" style="font-size:30px"></i></a>&nbsp;&nbsp;
+            <a href="{% url 'Modificar_archivo' %}" class="btn btn-outline" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil" style="font-size:30px"></i></a>&nbsp;&nbsp;
+        </td>
+    </tr>
+    <tr>
+        </tbody>
+        </table>
+    </div>
+    </div>
+    </div>
+    <!--FIN TABLA BOOTSTRAP-->
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!--Enlazar el archivo js de Bootstrap-->
+    <script src="js/bootstrap.min.js"></script>
+    </html>
