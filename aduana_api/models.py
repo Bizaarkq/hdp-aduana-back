@@ -6,27 +6,35 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-from model_utils.models import TimeStampedModel, SoftDeletableModel
 
-
-class Aduana(models.Model, TimeStampedModel,SoftDeletableModel):
+class Aduana(models.Model):
     id_aduana = models.IntegerField(primary_key=True)
-    nombre_aduana = models.CharField(max_length=10)
+    nombre_aduana = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_user = models.CharField(max_length=10)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_user = models.CharField(max_length=10)
+    deleted_at = models.DateTimeField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'aduana'
 
 
 class Archivo(models.Model):
     id_archivo = models.IntegerField(primary_key=True)
-    id_municipio = models.ForeignKey('Municipio', models.DO_NOTHING, db_column='id_municipio')
-    id_cliente = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cliente')
-    id_aduana = models.ForeignKey(Aduana, models.DO_NOTHING, db_column='id_aduana')
+    id_municipio = models.ForeignKey('Municipio', models.DO_NOTHING, db_column='id_municipio', null=True)
+    id_cliente = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cliente', null=True)
+    id_aduana = models.ForeignKey(Aduana, models.DO_NOTHING, db_column='id_aduana', null=True)
     numero_registro = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_user = models.CharField(max_length=10)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_user = models.CharField(max_length=10)
+    deleted_at = models.DateTimeField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'archivo'
 
 
@@ -101,13 +109,18 @@ class AuthUserUserPermissions(models.Model):
 
 class Carga(models.Model):
     id_carga = models.IntegerField(primary_key=True)
-    id_transporte = models.ForeignKey('Transporte', models.DO_NOTHING, db_column='id_transporte')
+    id_transporte = models.ForeignKey('Transporte', models.DO_NOTHING, db_column='id_transporte', null=True)
     tipo = models.CharField(max_length=10)
     peso = models.FloatField()
     descripcion = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_user = models.CharField(max_length=10)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_user = models.CharField(max_length=10)
+    deleted_at = models.DateTimeField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'carga'
 
 
@@ -121,18 +134,28 @@ class Cliente(models.Model):
     empresa = models.CharField(max_length=20)
     telefono_cliente = models.IntegerField()
     genero = models.CharField(max_length=9)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_user = models.CharField(max_length=10)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_user = models.CharField(max_length=10)
+    deleted_at = models.DateTimeField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'cliente'
 
 
 class Departamento(models.Model):
     id_departamento = models.CharField(primary_key=True, max_length=5)
-    nombre_departamento = models.CharField(max_length=10)
+    nombre_departamento = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_user = models.CharField(max_length=10)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_user = models.CharField(max_length=10)
+    deleted_at = models.DateTimeField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'departamento'
 
 
@@ -183,17 +206,22 @@ class DjangoSession(models.Model):
 
 class Municipio(models.Model):
     id_municipio = models.CharField(primary_key=True, max_length=5)
-    id_departamento = models.ForeignKey(Departamento, models.DO_NOTHING, db_column='id_departamento')
-    nombre_municipio = models.CharField(max_length=10)
+    id_departamento = models.ForeignKey(Departamento, models.DO_NOTHING, db_column='id_departamento', null=True)
+    nombre_municipio = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_user = models.CharField(max_length=10)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_user = models.CharField(max_length=10)
+    deleted_at = models.DateTimeField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'municipio'
 
 
 class Transporte(models.Model):
     id_transporte = models.IntegerField(primary_key=True)
-    id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
+    id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente', null=True)
     numero_vin = models.CharField(max_length=17)
     numero_motor = models.CharField(max_length=10)
     numero_chasis = models.CharField(max_length=17)
@@ -202,18 +230,28 @@ class Transporte(models.Model):
     capacidad_maxima = models.FloatField()
     modelo = models.CharField(max_length=10)
     numero_placas = models.CharField(max_length=7)
-    procedencia = models.CharField(max_length=10)
-    destino = models.CharField(max_length=10)
+    procedencia = models.CharField(max_length=50)
+    destino = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_user = models.CharField(max_length=10)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_user = models.CharField(max_length=10)
+    deleted_at = models.DateTimeField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'transporte'
 
 
 class Transportista(models.Model):
     id_transportista = models.IntegerField(primary_key=True)
-    id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente')
+    id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente', null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_user = models.CharField(max_length=10)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_user = models.CharField(max_length=10)
+    deleted_at = models.DateTimeField(null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'transportista'
