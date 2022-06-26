@@ -14,7 +14,7 @@ class Aduana(models.Model):
     created_user = models.CharField(max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
     updated_user = models.CharField(max_length=10)
-    deleted_at = models.DateTimeField(null=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         managed = True
@@ -34,7 +34,7 @@ class Archivo(models.Model):
     created_user = models.CharField(max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
     updated_user = models.CharField(max_length=10)
-    deleted_at = models.DateTimeField(null=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         managed = True
@@ -123,7 +123,7 @@ class Carga(models.Model):
     created_user = models.CharField(max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
     updated_user = models.CharField(max_length=10)
-    deleted_at = models.DateTimeField(null=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         managed = True
@@ -146,7 +146,7 @@ class Cliente(models.Model):
     created_user = models.CharField(max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
     updated_user = models.CharField(max_length=10)
-    deleted_at = models.DateTimeField(null=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         managed = True
@@ -163,7 +163,7 @@ class Departamento(models.Model):
     created_user = models.CharField(max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
     updated_user = models.CharField(max_length=10)
-    deleted_at = models.DateTimeField(null=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         managed = True
@@ -225,7 +225,7 @@ class Municipio(models.Model):
     created_user = models.CharField(max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
     updated_user = models.CharField(max_length=10)
-    deleted_at = models.DateTimeField(null=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         managed = True
@@ -251,7 +251,7 @@ class Transporte(models.Model):
     created_user = models.CharField(max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
     updated_user = models.CharField(max_length=10)
-    deleted_at = models.DateTimeField(null=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         managed = True
@@ -268,7 +268,7 @@ class Transportista(models.Model):
     created_user = models.CharField(max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
     updated_user = models.CharField(max_length=10)
-    deleted_at = models.DateTimeField(null=True)
+    deleted_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         managed = True
