@@ -30,7 +30,9 @@ class Archivo(models.Model):
     id_cliente = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cliente', null=True)
     id_aduana = models.ForeignKey(Aduana, models.DO_NOTHING, db_column='id_aduana', null=True)
     id_transporte = models.ForeignKey('Transporte', models.DO_NOTHING, db_column='id_transporte', null=True)
+    id_carga = models.ForeignKey('Carga', models.DO_NOTHING, db_column='id_carga', null=True)
     numero_registro = models.IntegerField()
+    aprobado = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     created_user = models.CharField(max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
@@ -43,6 +45,8 @@ class Archivo(models.Model):
 
     def __str__(self):
         return str(self.numero_registro)
+    def not_deleted(self):
+        return self.filter(deleted_at=None)
 
 
 class AuthGroup(models.Model):

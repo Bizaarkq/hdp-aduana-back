@@ -4,7 +4,7 @@ from .models import *
 
 admin.site.register(Aduana)
 admin.site.register(Archivo)
-admin.site.register(Carga)
+admin.site.register(Carga)  
 admin.site.register(Cliente)
 admin.site.register(Departamento)
 admin.site.register(Municipio)
