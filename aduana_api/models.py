@@ -8,7 +8,7 @@
 from django.db import models
 
 class Aduana(models.Model):
-    id_aduana = models.IntegerField(primary_key=True)
+    id_aduana = models.AutoField(primary_key=True)
     nombre_aduana = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     created_user = models.CharField(max_length=10)
@@ -25,10 +25,11 @@ class Aduana(models.Model):
 
 
 class Archivo(models.Model):
-    id_archivo = models.IntegerField(primary_key=True)
-    id_municipio = models.ForeignKey('Municipio', models.DO_NOTHING, db_column='id_municipio', null=True)
+    id_archivo = models.AutoField(primary_key=True)
+    id_municipio = models.ForeignKey('Municipio', models.DO_NOTHING, db_column='id_municipio', null=True, related_name='archivos')
     id_cliente = models.ForeignKey('Cliente', models.DO_NOTHING, db_column='id_cliente', null=True)
     id_aduana = models.ForeignKey(Aduana, models.DO_NOTHING, db_column='id_aduana', null=True)
+    id_transporte = models.ForeignKey('Transporte', models.DO_NOTHING, db_column='id_transporte', null=True)
     numero_registro = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     created_user = models.CharField(max_length=10)
@@ -114,7 +115,7 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Carga(models.Model):
-    id_carga = models.IntegerField(primary_key=True)
+    id_carga = models.AutoField(primary_key=True)
     id_transporte = models.ForeignKey('Transporte', models.DO_NOTHING, db_column='id_transporte', null=True)
     tipo = models.CharField(max_length=10)
     peso = models.FloatField()
@@ -133,7 +134,7 @@ class Carga(models.Model):
         return str(self.id_carga) + " " + self.descripcion
 
 class Cliente(models.Model):
-    id_cliente = models.IntegerField(primary_key=True)
+    id_cliente = models.AutoField(primary_key=True)
     nombre_cliente = models.CharField(max_length=20)
     apellido_cliente = models.CharField(max_length=20)
     dui_cliente = models.IntegerField()
@@ -235,7 +236,7 @@ class Municipio(models.Model):
         return self.nombre_municipio
 
 class Transporte(models.Model):
-    id_transporte = models.IntegerField(primary_key=True)
+    id_transporte = models.AutoField(primary_key=True)
     id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente', null=True)
     numero_vin = models.CharField(max_length=17)
     numero_motor = models.CharField(max_length=10)
@@ -262,7 +263,7 @@ class Transporte(models.Model):
 
 
 class Transportista(models.Model):
-    id_transportista = models.IntegerField(primary_key=True)
+    id_transportista = models.AutoField(primary_key=True)
     id_cliente = models.ForeignKey(Cliente, models.DO_NOTHING, db_column='id_cliente', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_user = models.CharField(max_length=10)
