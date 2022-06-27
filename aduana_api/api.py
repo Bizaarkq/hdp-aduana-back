@@ -1,10 +1,33 @@
 from cmath import e
 from operator import ge
+from re import A
 from .models import *
 from .serializers import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.utils import timezone
+
+@api_view(['GET'])
+def get_all_departamentos(request):
+    if request.method == 'GET':
+        departamentos = Departamento.objects.all()
+        serializer = DepartamentoSerializer(departamentos, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def get_municipios(request, id_departamento):
+    if request.method == 'GET':
+        municipios = Municipio.objects.filter(id_departamento = id_departamento)
+        serializer = MunicipioSerializer(municipios, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def current_user(request):
+    user = request.user
+    print(request)
+    return Response({
+        'username': user.username,
+    })
 
 @api_view(['GET'])
 def aduana_api_view(request):
@@ -38,32 +61,28 @@ def archivo_api_detail_view(request, registro = None):
                     cliente.save()
                 else:
                     return Response({'message': 'no se pudo actualizar el transportista'}, status=400)
-            elif request.data['id_transporte']:
+        if 'id_transporte' in request.data:
+            if request.data['id_transporte']:
                 transporte_db = Transporte.objects.filter(id_transporte = request.data.get('id_transport', {}).get('id_transporte')).first()
                 transporte = TransporteSerializer(transporte_db, data=request.data['id_transporte'])
                 if transporte.is_valid():
                     transporte.save()
                 else:
                     return Response({'message': 'no se pudo actualizar el transporte'}, status=400)
-            elif request.data['id_carga']:
+        if 'id_carga' in request.data:
+            if request.data['id_carga']:
                 carga_db = Carga.objects.filter(id_carga = request.data.get('id_carga', {}).get('id_carga')).first()
                 carga = CargaSerializer(carga_db, data=request.data['id_carga'])
                 if carga.is_valid():
                     carga.save()
                 else:
                     return Response({'message': 'no se pudo actualizar la carga'}, status=400)
-            elif request.data['id_aduana']:
-                aduana = ArchivoSerializer(archivo, data=request.data.get('id_aduana', {}).get('id_aduana'))
-                if aduana.is_valid():
-                    aduana.save()
-                else:
-                    return Response({'message': 'no se pudo actualizar la aduana'}, status=400)
-            elif request.data['id_municipio']:
-                municipio = ArchivoSerializer(archivo, data=request.data.get('id_municipio', {}).get('id_municipio'))
-                if municipio.is_valid():
-                    municipio.save()
-                else:
-                    return Response({'message': 'no se pudo actualizar el municipio'}, status=400)
+        if 'id_aduana' in request.data:
+            if request.data.get('id_aduana', {}).get('id_aduana'):
+                Archivo.objects.filter(numero_registro = registro).update(id_aduana = request.data.get('id_aduana', {}).get('id_aduana'))
+        if 'id_municipio' in request.data:
+            if request.data.get('id_municipio', {}).get('id_municipio'):
+                Archivo.objects.filter(numero_registro = registro).update(id_municipio = request.data.get('id_municipio', {}).get('id_municipio'))
             return Response({'message': 'Archivo creado con exito'}, status=201)
         return Response({'message': 'neles creado con exito'}, status=201)
     #metodo de guardado de archivo
